@@ -1,0 +1,3 @@
+C:\Users\sr116\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Mark Hilliker\Custom Data Tips\1.0.1\\CustomDataTip.dll
+C:\Users\sr116\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Mark Hilliker\Custom Data Tips\1.0.1\\extension.vsixmanifest
+C:\Users\sr116\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Mark Hilliker\Custom Data Tips\1.0.1\\CustomDataTip.pdb
