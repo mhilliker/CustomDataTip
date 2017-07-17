@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
+    <None Include="README.md" />
     <None Include="source.extension.vsixmanifest" />
   </ItemGroup>
   <ItemGroup>
