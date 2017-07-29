@@ -11,6 +11,7 @@ namespace CustomDataTip
 
         private static int item_count;
         private static int item_depth;
+        public static SolidColorBrush TextColorBrush;
 
         /// <summary>
         /// Creates the tree view for a given expression.
@@ -131,14 +132,14 @@ namespace CustomDataTip
             Label lblName = new Label()
             {
                 Content = name + ":",
-                Foreground = Brushes.AntiqueWhite
+                Foreground = TextColorBrush ?? Brushes.AntiqueWhite
             };
 
             // create value
             Label lblValue = new Label()
             {
                 Content = value,
-                Foreground = Brushes.AntiqueWhite
+                Foreground = TextColorBrush ?? Brushes.AntiqueWhite
             };
 
 

@@ -39,6 +39,7 @@ namespace CustomDataTip
             debugger = dte?.Debugger;
             inAdornment = false;
             jsonSerializer = new JavaScriptSerializer();
+            TreeViewBuilder.TextColorBrush = root.ForeBrush;
 
             // Grab a reference to the adornment layer that this adornment should be added to
             adornmentLayer = view.GetAdornmentLayer("CustomDataTip");
@@ -111,7 +112,6 @@ namespace CustomDataTip
             }
             if (root.IsMouseOver)
             {
-                //MoveAdornment(9999, 9999);
                 return;
             }
             var variable = DebuggerVariable.FindUnderMousePointer(debugger, e);
@@ -133,7 +133,6 @@ namespace CustomDataTip
                     {
                         root.ResultTreeView.Items.Add(item);
                     }
-                    root.TitleLabel.Content = variable.Name;
                 }
             }
             else

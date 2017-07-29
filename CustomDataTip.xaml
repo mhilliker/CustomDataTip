@@ -25,7 +25,6 @@
                 <RotateTransform x:Key="trans" Angle="270" />
             </Grid.Resources>
 
-            <Label Name="TitleLabel" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Content="Mark's Custom Data Tip" Foreground="#FFD2CFCF"  />
             <TreeView Name="ResultTreeView" BorderThickness="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" Foreground="#FFD2CFCF" Background="#FF1B5277" MaxHeight="250">
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">

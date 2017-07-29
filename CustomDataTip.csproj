@@ -67,6 +67,7 @@
     <Compile Include="DebuggerVariable.cs" />
     <Compile Include="ObjectNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemeUtil.cs" />
     <Compile Include="TreeViewBuilder.cs" />
     <Compile Include="CustomDataTip.xaml.cs">
       <DependentUpon>CustomDataTip.xaml</DependentUpon>
