@@ -19,6 +19,9 @@ namespace CustomDataTip
         /// </summary>
         public SolidColorBrush BackBrush { get; set; }
 
+        /// <summary>
+        /// Creates the control and sets the background from the VS theme
+        /// </summary>
         public CustomDataTipControl()
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace CustomDataTip
             switch (theme)
             {
                 case VsTheme.Blue:
-                    BackBrush = (SolidColorBrush) converter.ConvertFromString("#FF1B5277");
+                    BackBrush = (SolidColorBrush)converter.ConvertFromString("#FF1B5277");
                     break;
                 case VsTheme.Dark:
                     BackBrush = Brushes.DimGray;
@@ -48,6 +51,10 @@ namespace CustomDataTip
                     throw new ArgumentOutOfRangeException();
             }
 
+            PinButton.Background = BackBrush;
+            PinButton.Foreground = ForeBrush;
+            PinButton.BorderBrush = ForeBrush;
+            Grid.Background = BackBrush;
             ResultTreeView.Background = BackBrush;
             ResultTreeView.Foreground = ForeBrush;
         }

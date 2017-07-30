@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="150">
     <Border Background="#FF1B5277" BorderBrush="Black" BorderThickness="1" CornerRadius="0" >
-        <Grid Height="Auto">
+        <Grid Height="Auto" Name="Grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto" />
@@ -21,11 +21,8 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
 
-            <Grid.Resources>
-                <RotateTransform x:Key="trans" Angle="270" />
-            </Grid.Resources>
-
-            <TreeView Name="ResultTreeView" BorderThickness="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" Foreground="#FFD2CFCF" Background="#FF1B5277" MaxHeight="250">
+            <ToggleButton x:Name="PinButton" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="1" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Center" ToolTip="Pin the datatip to the window" Content="Pin" />
+            <TreeView Name="ResultTreeView" BorderThickness="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center" Foreground="#FFD2CFCF" Background="#FF1B5277" MaxHeight="250">
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="Margin" Value="0,0,0,0" />

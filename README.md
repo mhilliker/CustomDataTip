@@ -28,5 +28,4 @@ Note: The extension is still fairly rough around the edges and very much under d
 This project is still in its infancy, so at the moment, there are a lot of features that I would like to build out in the future, such as:
 * Copy a variable to clipboard as JSON
 * Quickly adding a variable to watch
-* Matching VS theme color
 * Querying an array variable with something like LINQ

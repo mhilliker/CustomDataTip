@@ -8,9 +8,16 @@ namespace CustomDataTip
 {
     public static class TreeViewBuilder
     {
+        // for performance purposes, we need to throttle the number of data members that we read in
+        // in future iterations, we can implement an incremental loading system for this
+        private const int MaxItems = 15000;
+        private const int MaxLevels = 5;
+        private static int _itemCount;
+        private static int _itemDepth;
 
-        private static int item_count;
-        private static int item_depth;
+        /// <summary>
+        /// Text color of the tree view items
+        /// </summary>
         public static SolidColorBrush TextColorBrush;
 
         /// <summary>
@@ -22,11 +29,11 @@ namespace CustomDataTip
         {
             TreeView treeView = new TreeView();
 
-            item_count = item_depth = 0;
+            _itemCount = _itemDepth = 0;
 
             treeView.ItemsSource = new List<TreeViewItem>() { BuildTreeView(expression) };
 
-            item_count = item_depth = 0;
+            _itemCount = _itemDepth = 0;
             return treeView;
         }
 
@@ -38,10 +45,10 @@ namespace CustomDataTip
         /// <returns>Object</returns>
         public static object GetStringRepresentation(EnvDTE.Expression expression, bool parallel = false)
         {
-            item_count = item_depth = 0;
+            _itemCount = _itemDepth = 0;
 
             var obj =  BuildString(expression);
-            item_count = item_depth = 0;
+            _itemCount = _itemDepth = 0;
 
             return obj;
         }
@@ -63,10 +70,9 @@ namespace CustomDataTip
             {
                 List<EnvDTE.Expression> dataMembers = expression.DataMembers.Cast<EnvDTE.Expression>().ToList();
 
-
-                if (item_count < 10000 && item_depth < 5) // for performance
+                if (_itemCount < MaxItems && _itemDepth < MaxLevels) 
                 {
-                    item_depth++;
+                    _itemDepth++;
                     foreach(var member in dataMembers)
                     {
                         newItem.Add(member.Name, BuildString(member));
@@ -97,9 +103,9 @@ namespace CustomDataTip
                 newItem = GetTreeViewItem(expression.Name, expression.Type);
                 var childItems = new List<TreeViewItem>();
 
-                if (item_count < 10000 && item_depth < 5) // for performance
+                if (_itemCount < MaxItems && _itemDepth < MaxLevels)
                 {
-                    item_depth++;
+                    _itemDepth++;
                     foreach (EnvDTE.Expression member in dataMembers)
                     {
                         childItems.Add(BuildTreeView(member));
@@ -150,7 +156,7 @@ namespace CustomDataTip
             // assign stack to header
             item.Header = stack;
 
-            item_count++;
+            _itemCount++;
             
             return item;
         }

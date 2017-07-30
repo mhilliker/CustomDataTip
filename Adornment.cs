@@ -148,6 +148,12 @@ namespace CustomDataTip
         /// <param name="top">distance from the top</param>
         private void MoveAdornment(double left, double top)
         {
+            // if the adornment is pinned to the screen, don't move it
+            if (root.PinButton.IsChecked ?? false)
+            {
+                return;
+            }
+
             Canvas.SetLeft(root, left);
             Canvas.SetTop(root, top);
         }
