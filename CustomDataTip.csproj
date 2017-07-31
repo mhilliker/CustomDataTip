@@ -72,6 +72,9 @@
     <Compile Include="CustomDataTip.xaml.cs">
       <DependentUpon>CustomDataTip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VariableExporter.xaml.cs">
+      <DependentUpon>VariableExporter.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Adornment_large.png">
@@ -88,6 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CustomDataTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VariableExporter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

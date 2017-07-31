@@ -19,8 +19,8 @@ namespace CustomDataTip
         internal readonly String Value;
         internal readonly EnvDTE.Expression Expression;
 
-        private static Regex m_variableExtractor = new Regex("[a-zA-Z0-9_.]+");
-        private EnvDTE.Debugger m_debugger;
+        private static Regex _variableExtractor = new Regex("[a-zA-Z0-9_.]+");
+        private EnvDTE.Debugger debugger;
 
         internal static DebuggerVariable FindUnderMousePointer(EnvDTE.Debugger debugger, MouseHoverEventArgs e)
         {
@@ -61,7 +61,7 @@ namespace CustomDataTip
             }
 
             // Find the name of the variable under the mouse pointer (ex: 'gesture.Pose.Name' when the mouse is hovering over the 'o' of pose)
-            var match = m_variableExtractor.Matches(line.GetText()).OfType<Match>().SingleOrDefault(x => x.Index <= hoveredIndex && (x.Index + x.Length) >= hoveredIndex);
+            var match = _variableExtractor.Matches(line.GetText()).OfType<Match>().SingleOrDefault(x => x.Index <= hoveredIndex && (x.Index + x.Length) >= hoveredIndex);
             if ((match == null) || (match.Value.Length == 0))
             {
                 span = new SnapshotSpan();
@@ -89,7 +89,7 @@ namespace CustomDataTip
 
         private DebuggerVariable(EnvDTE.Debugger debugger, SnapshotPoint point, SnapshotSpan span, string name, EnvDTE.Expression expression)
         {
-            this.m_debugger = debugger;
+            this.debugger = debugger;
             this.Point = point;
             this.Span = span;
             this.Name = name;
@@ -100,7 +100,7 @@ namespace CustomDataTip
 
         internal string GetMemberString(string name)
         {
-            var expression = m_debugger.GetExpression(this.Name + "." + name); // ex: "bitmap.ColorMode", "bitmap.Dimensions.Width", "bitmap.Buffers[0].Pitch"
+            var expression = debugger.GetExpression(this.Name + "." + name); // ex: "bitmap.ColorMode", "bitmap.Dimensions.Width", "bitmap.Buffers[0].Pitch"
 
             if (!expression.IsValidValue)
             {
@@ -139,7 +139,7 @@ namespace CustomDataTip
         {
             // Serialize the IBuffer to string and copy from debuggee to debugger
             var expressionText = "Convert.ToBase64String(System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions.ToArray(" + this.Name + "." + name + "));";
-            var expression = m_debugger.GetExpression(expressionText);
+            var expression = debugger.GetExpression(expressionText);
             if (!expression.IsValidValue)
             {
                 return null;

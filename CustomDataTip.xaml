@@ -5,24 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="150">
+    
     <Border Background="#FF1B5277" BorderBrush="Black" BorderThickness="1" CornerRadius="0" >
         <Grid Height="Auto" Name="Grid">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" ></ColumnDefinition>
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <ToggleButton x:Name="PinButton" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="1" Grid.Row="1" Width="25" Height="25" HorizontalAlignment="Center" ToolTip="Pin the datatip to the window" Content="Pin" />
-            <TreeView Name="ResultTreeView" BorderThickness="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center" Foreground="#FFD2CFCF" Background="#FF1B5277" MaxHeight="250">
+            <ToggleButton x:Name="PinButton" BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Left" ToolTip="Pin the datatip to the window" Content="Pin" />
+            <Button Name="ExportButton"  BorderThickness="1" Grid.Row="1" Grid.Column="3" Width="50" Height="25" HorizontalAlignment="Right" ToolTip="Export the variable to a specified format" Content="Export..."></Button>
+            <TreeView Name="ResultTreeView" BorderThickness="0" Grid.ColumnSpan="4" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Foreground="#FFD2CFCF" Background="#FF1B5277" MaxHeight="250">
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="Margin" Value="0,0,0,0" />

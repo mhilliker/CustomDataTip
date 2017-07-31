@@ -15,6 +15,51 @@
           "lib/net10/EnvDTE.dll": {}
         }
       },
+      "Microsoft.AspNet.WebApi/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.WebHost": "[5.2.3, 5.3.0)"
+        }
+      },
+      "Microsoft.AspNet.WebApi.Client/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.4"
+        },
+        "frameworkAssemblies": [
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.3"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.WebHost/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Core": "[5.2.3, 5.3.0)"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.WebHost.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.WebHost.dll": {}
+        }
+      },
       "Microsoft.Build.Framework/14.3.0": {
         "type": "package",
         "compile": {
@@ -344,6 +389,15 @@
         "frameworkAssemblies": [
           "Microsoft.Build.Framework.dll"
         ]
+      },
+      "Newtonsoft.Json/6.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
       },
       "stdole/7.0.3301": {
         "type": "package",
@@ -368,6 +422,51 @@
           "lib/net10/EnvDTE.dll": {}
         }
       },
+      "Microsoft.AspNet.WebApi/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.WebHost": "[5.2.3, 5.3.0)"
+        }
+      },
+      "Microsoft.AspNet.WebApi.Client/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.4"
+        },
+        "frameworkAssemblies": [
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.3"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.WebHost/5.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Core": "[5.2.3, 5.3.0)"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.WebHost.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.WebHost.dll": {}
+        }
+      },
       "Microsoft.Build.Framework/14.3.0": {
         "type": "package",
         "compile": {
@@ -698,6 +797,15 @@
           "Microsoft.Build.Framework.dll"
         ]
       },
+      "Newtonsoft.Json/6.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
       "stdole/7.0.3301": {
         "type": "package",
         "compile": {
@@ -717,6 +825,47 @@
         "EnvDTE.8.0.1.nupkg.sha512",
         "EnvDTE.nuspec",
         "lib/net10/EnvDTE.dll"
+      ]
+    },
+    "Microsoft.AspNet.WebApi/5.2.3": {
+      "sha512": "mGBfSy61+2dIdPwgguW8EaCVsbYTwwVHeCc/pVq1PhlZS87ColgJ++Hve40TrX6Dtqde0fo9M1Tt19rXlHC5GA==",
+      "type": "package",
+      "files": [
+        "Microsoft.AspNet.WebApi.5.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebApi.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Client/5.2.3": {
+      "sha512": "3kiI8peSXbXHDDrRuo+QaX0iCEVRe0nvn2dBDRw656uPX32UalbBlSIDUDlJxu05eau4tnuhsikiUuugvvoUoQ==",
+      "type": "package",
+      "files": [
+        "Microsoft.AspNet.WebApi.Client.5.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebApi.Client.nuspec",
+        "lib/net45/System.Net.Http.Formatting.dll",
+        "lib/net45/System.Net.Http.Formatting.xml",
+        "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
+        "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Core/5.2.3": {
+      "sha512": "o90QYlRV8VKR1S7+EcJw9w8WSyVFLl+IIzN8ILZ+n2t6rsc/KS8kBxRzA7wCFPRUHhebCfLqilBk39phvanx3g==",
+      "type": "package",
+      "files": [
+        "Content/web.config.transform",
+        "Microsoft.AspNet.WebApi.Core.5.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebApi.Core.nuspec",
+        "lib/net45/System.Web.Http.dll",
+        "lib/net45/System.Web.Http.xml"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.WebHost/5.2.3": {
+      "sha512": "bhm4/BKdS3t6nK2R3NjCpxulcwtMFiHqVBDLuN3W5So1PhZfE+RBs7eVazGOhsEKCk7PoSmiSnl9DG0cpyfHtA==",
+      "type": "package",
+      "files": [
+        "Microsoft.AspNet.WebApi.WebHost.5.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebApi.WebHost.nuspec",
+        "lib/net45/System.Web.Http.WebHost.dll",
+        "lib/net45/System.Web.Http.WebHost.xml"
       ]
     },
     "Microsoft.Build.Framework/14.3.0": {
@@ -1037,6 +1186,29 @@
         "tools/vssdk/schemas/VSIXManifestSchema.xsd"
       ]
     },
+    "Newtonsoft.Json/6.0.4": {
+      "sha512": "FyQLmEpjsCrEP+znauLDGAi+h6i9YnaMkITlfIoiM4RYyX3nki306bTHsr/0okiIvIc7BJhQTbOAIZVocccFUw==",
+      "type": "package",
+      "files": [
+        "Newtonsoft.Json.6.0.4.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netcore45/Newtonsoft.Json.dll",
+        "lib/netcore45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "tools/install.ps1"
+      ]
+    },
     "stdole/7.0.3301": {
       "sha512": "d9BesmkRkbEgzvWLPH8J/lgMPqbQib5aqwyulUCdQHBoqjvFYdin+ld82hSEEkY0TArDv+xJVhGmy0q4pExzXA==",
       "type": "package",
@@ -1050,6 +1222,7 @@
   "projectFileDependencyGroups": {
     "": [
       "EnvDTE >= 8.0.1",
+      "Microsoft.AspNet.WebApi >= 5.2.3",
       "Microsoft.Build.Framework >= 14.3.0",
       "Microsoft.VSSDK.BuildTools >= 14.0.23205",
       "Microsoft.VisualStudio.Editor >= 14.0.23205",

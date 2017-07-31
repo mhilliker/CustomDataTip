@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Newtonsoft.Json;
 
 namespace CustomDataTip
 {
@@ -43,14 +45,14 @@ namespace CustomDataTip
         /// <param name="expression">DTE expression for a given variable in the debugger</param>
         /// <param name="parallel">If true, builds out the string in parallel. Useful for large objects</param>
         /// <returns>Object</returns>
-        public static object GetStringRepresentation(EnvDTE.Expression expression, bool parallel = false)
+        public static object GetStringRepresentation(EnvDTE.Expression expression, bool prettyPrint = false, bool parallel = false)
         {
             _itemCount = _itemDepth = 0;
 
             var obj =  BuildString(expression);
             _itemCount = _itemDepth = 0;
 
-            return obj;
+            return JsonConvert.SerializeObject(obj, prettyPrint ? Formatting.Indented : Formatting.None);
         }
 
         /// <summary>
@@ -58,19 +60,23 @@ namespace CustomDataTip
         /// </summary>
         /// <param name="expression">DTE expression to serialize</param>
         /// <returns>Convenient dictionary object representation to serialize</returns>
-        private static Dictionary<string, object> BuildString(EnvDTE.Expression expression)
+        private static object BuildString(EnvDTE.Expression expression)
         {
             Dictionary<string, object> newItem = new Dictionary<string, object>();
 
-            if (expression.DataMembers == null || expression.DataMembers.Count == 0)
+            if (expression.DataMembers == null || expression.DataMembers.Count == 0 || expression.Type.Contains("Function"))
             {
-                newItem[expression.Name] = expression.Value;
+                return expression.Value;
+            }
+            else if (expression.Name == "[Methods]")
+            {
+                return new object[] {};
             }
             else
             {
                 List<EnvDTE.Expression> dataMembers = expression.DataMembers.Cast<EnvDTE.Expression>().ToList();
 
-                if (_itemCount < MaxItems && _itemDepth < MaxLevels) 
+                if (_itemCount < MaxItems*5 && _itemDepth < MaxLevels*2) 
                 {
                     _itemDepth++;
                     foreach(var member in dataMembers)

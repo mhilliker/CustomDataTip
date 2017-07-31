@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
+using System.Windows;
 using System.Windows.Controls;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Editor;
 
 namespace CustomDataTip
@@ -21,8 +23,8 @@ namespace CustomDataTip
         private DateTime start;
         private EnvDTE.DTE dte;
         private readonly EnvDTE.Debugger debugger;
+        private EnvDTE.Expression currentExpression;
         private const int AdornmentLeftOffset = 20;
-        private bool inAdornment;
         private readonly JavaScriptSerializer jsonSerializer;
 
         /// <summary>
@@ -37,8 +39,6 @@ namespace CustomDataTip
             start = DateTime.UtcNow;
             dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE;
             debugger = dte?.Debugger;
-            inAdornment = false;
-            jsonSerializer = new JavaScriptSerializer();
             TreeViewBuilder.TextColorBrush = root.ForeBrush;
 
             // Grab a reference to the adornment layer that this adornment should be added to
@@ -50,6 +50,7 @@ namespace CustomDataTip
             this.view.MouseHover += UpdateAdornment;
             root.MouseEnter += _root_MouseEnter;
             root.MouseLeave += _root_MouseLeave;
+            root.ExportButton.Click += _root_Export;
         }
 
         /// <summary>
@@ -59,7 +60,6 @@ namespace CustomDataTip
         /// <param name="e">event arguments</param>
         private void _root_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            inAdornment = true;
         }
 
         /// <summary>
@@ -69,13 +69,39 @@ namespace CustomDataTip
         /// <param name="e">event arguments</param>
         private void _root_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            inAdornment = false;
             if (Canvas.GetLeft(root) < 8000)
                 MoveAdornment(9999, 9999);
         }
 
         /// <summary>
-        /// Updates the size of the green speed bar based on a simple (KeysPressed/TimeElapsed) calculation
+        /// Launches the variable exporter and passes in the debugger variable.
+        /// </summary>
+        /// <param name="sender">event source</param>
+        /// <param name="e">event arguments</param>
+        private void _root_Export(object sender, RoutedEventArgs e)
+        {
+            if (currentExpression == null)
+            {
+                return;
+            }
+
+            var exporterControl = new VariableExporter();
+            exporterControl.Expression = currentExpression;
+     
+            var dialogWindow = new System.Windows.Window()
+            {
+                Title = "Variable Exporter",
+                Content = exporterControl,
+                Width = 500,
+                Height = 300,
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            dialogWindow.ShowDialog();
+
+        }
+
+        /// <summary>
         /// DEPRECATED, BUT DON'T GET RID OF THIS METHOD
         /// </summary>
         /// <param name="typedChars">Number of keys pressed since start of session</param>
@@ -122,12 +148,8 @@ namespace CustomDataTip
                 {
                     MoveAdornment(position.Item1, position.Item2);
 
-                    //TODO: Create string representation
-                    //var dictView = TreeViewBuilder.GetStringRepresentation(variable.Expression, true);
-                    //var stringView = jsonSerializer.Serialize(dictView);
-
-
                     var newTreeView = TreeViewBuilder.GetTreeView(variable.Expression);
+                    currentExpression = variable.Expression;
                     root.ResultTreeView.Items.Clear();
                     foreach (var item in newTreeView.Items)
                     {
@@ -224,7 +246,7 @@ namespace CustomDataTip
         private bool IsTypescriptPrimitive(string type)
         {
             var myType = type?.ToLower();
-            List<string> types = new List<string>() {"number", "string", "boolean", "array"};
+            List<string> types = new List<string>() { "number", "string", "boolean", "array" };
 
             return !string.IsNullOrEmpty(myType) && (types.Any(e => e.Equals(myType)));
         }

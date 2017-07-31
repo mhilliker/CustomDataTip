@@ -54,6 +54,11 @@ namespace CustomDataTip
             PinButton.Background = BackBrush;
             PinButton.Foreground = ForeBrush;
             PinButton.BorderBrush = ForeBrush;
+
+            ExportButton.Background = BackBrush;
+            ExportButton.Foreground = ForeBrush;
+            ExportButton.BorderBrush = ForeBrush;
+
             Grid.Background = BackBrush;
             ResultTreeView.Background = BackBrush;
             ResultTreeView.Foreground = ForeBrush;

@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "EnvDTE": "8.0.1",
+    "Microsoft.AspNet.WebApi": "5.2.3",
     "Microsoft.Build.Framework": "14.3.0",
     "Microsoft.VisualStudio.Editor": "14.0.23205",
     "Microsoft.VisualStudio.SDK.EmbedInteropTypes": "14.1.2",
